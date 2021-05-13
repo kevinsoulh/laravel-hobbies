@@ -56,7 +56,7 @@ class AuthController extends Controller
             return redirect()->intended('home');
         }
 
-        return redirect('login')->with('errror', "Error! You have entered invalid credentials");
+        return redirect('login')->with('error', "Error! You have entered invalid credentials");
     }
 
     public function logout () {

@@ -8,7 +8,7 @@
     <!-- csrf token -->
     <meta name="csrf_token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Laravel</title>
 
     <!-- styles -->
     <link href="{{ asset('styles/bootstrap.css') }}" rel="stylesheet"/>
@@ -16,7 +16,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light hadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <ul class="navbar-nav mr-auto">
                     <li>
