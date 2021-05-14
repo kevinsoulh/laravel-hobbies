@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('start');
 });
 
 Route::get('/start', function () {
@@ -24,6 +24,8 @@ Route::get('/start', function () {
 Route::get('/info', function () {
     return view('info');
 });
+
+Route::resource('hobby', 'HobbyController');
 
 Route::get('/register', 'auth\AuthController@register')->name('register');
 Route::post('/register', 'auth\AuthController@storeUser');

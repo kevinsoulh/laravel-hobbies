@@ -20,19 +20,21 @@
             <div class="container">
                 <ul class="navbar-nav mr-auto">
                     <li>
-                        <a class="nav-link{{Request::is('/') ? 'active' : ''}}" href="/home">Laravel</a>
+                        <a class="nav-link{{Request::is('/start') ?? 'active' }}" href="/start">Start</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('/info') ? 'active' : ''}}" href="/start">Start</a>
+                        <a class="nav-link{{Request::is('/home') ?? 'active' }}" href="/home">Home</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('info') ? 'active' : ''}}" href="/info">Info</a>
+                        <a class="nav-link{{Request::is('/info') ?? 'active' }}" href="/info">Info</a>
+                    </li>
+                    <li>
+                        <a class="nav-link{{Request::is('/hobby') ?? 'active' }}" href="/hobby">Hobbies</a>
+                    </li>
+                    <li>
+                        <a class="nav-link{{Request::is('/tags') ?? 'active' }}" href="/tags">Tags</a>
                     </li>
                 </ul>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ 'Toggle navigation' }}">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse-navbar-collapse" id="navbarSupportedContent">
 
                <!-- left side of navbar -->
                <div class="container-fluid">
