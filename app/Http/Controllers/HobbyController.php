@@ -108,6 +108,9 @@ class HobbyController extends Controller
      */
     public function destroy(Hobby $hobby)
     {
-        //
+        
+        $_hobby = $hobby->name;
+        $hobby->delete();
+        return $this->index();
     }
 }
