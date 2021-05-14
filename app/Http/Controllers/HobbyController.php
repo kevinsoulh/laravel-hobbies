@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hobby;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HobbyController extends Controller
 {
@@ -55,7 +56,9 @@ class HobbyController extends Controller
      */
     public function show(Hobby $hobby)
     {
-        //
+        return view('hobby.show')->with([
+            'hobby' => $hobby
+        ]);
     }
 
     /**
@@ -66,7 +69,11 @@ class HobbyController extends Controller
      */
     public function edit(Hobby $hobby)
     {
-        //
+        
+
+        return view('hobby.edit')->with([
+            'hobby' => $hobby,
+        ]);   
     }
 
     /**
@@ -78,7 +85,19 @@ class HobbyController extends Controller
      */
     public function update(Request $request, Hobby $hobby)
     {
-        //
+        
+
+        $request->validate([
+            'name' => 'required|min:3',
+            'description' => 'required|min:5',
+        ]);
+
+        $hobby->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return $this->index();
     }
 
     /**
