@@ -12,7 +12,7 @@
                             <li class="list-group-item">
                                 {{ $hobby->name }}
                                 <a class="btn btn-outline-primary float-end" href="/hobby/{{ $hobby->id }}/edit">Edit Hobby</a>
-                                <a href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                &nbsp<a href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
                                 <form class="float-end" action="/hobby/{{ $hobby->id }}" method="post">
                                 @csrf
                                 @method('DELETE')

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Starting Page
+                    Starting Page - Random text
                 </div>
                 <div class="card-body">
                     <p>
