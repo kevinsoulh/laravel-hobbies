@@ -26,6 +26,8 @@ Route::get('/info', function () {
 });
 
 Route::resource('hobby', 'HobbyController');
+Route::resource('user', 'UserController');
+Route::resource('tag', 'TagController');
 
 Route::get('/register', 'auth\AuthController@register')->name('register');
 Route::post('/register', 'auth\AuthController@storeUser');

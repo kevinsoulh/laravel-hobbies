@@ -7,8 +7,8 @@
             <div class="card">
                 <div class="card-header">Hobby Details</div>
                 <div class="card-body">
-                    <p>{{ $hobby->name }}</p>
-                    <p>{{ $hobby->description }}</p>
+                    <p><strong>Hobby name: </strong>{{ $hobby->name }}</p>
+                    <p><strong>Hobby description: </strong>{{ $hobby->description }}</p>
                 </div>
             </div>
             <a class="btn btn-primary mt-2" href="/hobby">Back</a>

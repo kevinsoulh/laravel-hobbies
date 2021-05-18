@@ -20,19 +20,19 @@
             <div class="container">
                 <ul class="navbar-nav mr-auto">
                     <li>
-                        <a class="nav-link{{Request::is('/start') ?? 'active' }}" href="/start">Start</a>
+                        <a class="nav-link{{Request::is('/start') ? 'active' : '' }}" href="/start">Start</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('/home') ?? 'active' }}" href="/home">Home</a>
+                        <a class="nav-link{{Request::is('/home') ? 'active' : '' }}" href="/home">Home</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('/info') ?? 'active' }}" href="/info">Info</a>
+                        <a class="nav-link{{Request::is('/info') ? 'active' : '' }}" href="/info">Info</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('/hobby') ?? 'active' }}" href="/hobby">Hobbies</a>
+                        <a class="nav-link{{Request::is('/hobby') ? 'active' : '' }}" href="/hobby">Hobbies</a>
                     </li>
                     <li>
-                        <a class="nav-link{{Request::is('/tags') ?? 'active' }}" href="/tags">Tags</a>
+                        <a class="nav-link{{Request::is('/tags') ? 'active' : '' }}" href="/tag">Tags</a>
                     </li>
                 </ul>
 
@@ -69,8 +69,36 @@
                </div>
             </div>
         </nav>
-
+        
         <main class="py-4">
+
+        @isset($message_success)
+        <div class="container mb-3 p-6">
+            <div class="alert-success" role="alert">
+                {!! $message_success !!}
+            </div>
+        </div>
+        @endisset
+        
+        @isset($message_warning)
+        <div class="container mb-3 p-6">
+            <div class="alert-warning" role="alert">
+                {!! $message_warning !!}
+            </div>
+        </div>
+        @endisset
+
+        @if($errors->any())
+            <div class="container">
+                <div class="alert-danger" role="alert">
+                    <ul class="mb-0">
+                        @foreach($errors as $error)
+                            <li>{!! $error !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
             @yield('content')
         </main>
     </div>

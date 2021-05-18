@@ -15,7 +15,7 @@
                             <small class="form-text text-danger">{!! $errors->first('name') !!}</small>
                         </div>
                         <div class="form-group ">
-                            <label for="description"></label>
+                            <label for="description">Description</label>
                             <textarea class="form-control{{ $errors->has('description') ? 'border-danger' : '' }}" name="description" id="description" rows="5" value="{{ old('description') }}">
                             </textarea>
                             <small class="form-text text-danger">{!! $errors->first('description') !!}</small>

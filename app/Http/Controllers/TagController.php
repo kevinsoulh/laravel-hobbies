@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Hobby;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Tag;
 
-class HobbyController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,9 @@ class HobbyController extends Controller
      */
     public function index()
     {
+        $tags = Tag::all();
 
-        $hobbies = Hobby::all();
-
-        return view('hobby.index', compact('hobbies'));
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -28,7 +26,7 @@ class HobbyController extends Controller
      */
     public function create()
     {
-        return view('hobby.create');
+        return view('tags.create');
     }
 
     /**
@@ -39,81 +37,76 @@ class HobbyController extends Controller
      */
     public function store(Request $request)
     {
-        $hobbies = new Hobby([
+        $tag = new Tag([
             'name' => $request->name,
-            'description' => $request->description,
+            'style' => $request->style,
         ]);
-        $hobbies->save();
 
+        $tag->save();
         return $this->index()->with([
-            'message_success' => 'Hobby '. $hobbies->name .' was  created'
+            'message-success' => 'Tag '. $tag->name .' was created'
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Hobby  $hobby
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Hobby $hobby)
+    public function show($id)
     {
-        return view('hobby.show', compact('hobby'));
+        return view('tags.show', compact('tags'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Hobby  $hobby
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hobby $hobby)
+    public function edit(Tag $tag)
     {
-        
-
-        return view('hobby.edit', compact('hobby'));
+        return view('tags.edit', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Hobby  $hobby
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hobby $hobby)
+    public function update(Request $request, Tag $tag)
     {
-        
-
         $request->validate([
             'name' => 'required|min:3',
-            'description' => 'required|min:5',
+            'style' => 'required|min:5',
         ]);
 
-        $hobby->update([
+        $tag->update([
             'name' => $request->name,
-            'description' => $request->description,
+            'style' => $request->style,
         ]);
 
         return $this->index()->with([
-            'message_success' => 'Hobby '. $hobby->name .' was updated'
+            'message_success' => 'Tag '. $tag->name . ' was updated'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Hobby  $hobby
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hobby $hobby)
+    public function destroy(Tag $tag)
     {
-        
-        $_hobby = $hobby->name;
-        $hobby->delete();
+        $_tag = $tag->name;
+        $tag->delete();
 
         return $this->index()->with([
-            'message_success' => 'Hobby '. $hobby->name .' was deleted'
+            'message_success' => 'Tag ' . $tag->name . ' was deleted'
         ]);
     }
 }

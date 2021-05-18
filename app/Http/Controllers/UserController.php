@@ -45,7 +45,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('user.show')->with([
+            'user' => $user
+        ]);
     }
 
     /**
@@ -56,7 +58,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -68,7 +70,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'motto' => 'required|min:3',
+        ]);
+
+        $user->update([
+            'motto' => $request->motto,
+            'about_me' => $request->about_me,
+        ]);
+
+        return redirect('/home');
     }
 
     /**
