@@ -4,19 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Hobby;
+use App\User;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function home() {
         
-        $hobbies = Hobby::select()
-        ->where('user_id', auth()->id())
-        ->orderby('updated_at', "DESC")
-        ->get();
-
-        return view('home')->with([
-            'hobbies' => $hobbies,
-        ]);
     }
 }

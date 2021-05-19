@@ -7,11 +7,11 @@
             <div class="card">
                 <div class="card-header">Hobby Details</div>
                 <div class="card-body">
-                    <p><strong>Hobby name: </strong>{{ $hobby->name }}</p>
-                    <p><strong>Hobby description: </strong>{{ $hobby->description }}</p>
+                    <p><b>Hobby Name: </b><br>{{ $hobby->name }}</p>
+                    <p><b>Hobby Description: </b><br>{{ $hobby->description }}</p>
                 </div>
             </div>
-            <a class="btn btn-primary mt-2" href="/hobby">Back</a>
+            <a class="btn btn-primary mt-2" href="{{ URL::previous() }}">Back</a>
         </div>
     </div>
 </div>

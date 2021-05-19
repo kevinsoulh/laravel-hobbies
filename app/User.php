@@ -9,17 +9,13 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     
-    public function hobbies() {
-        return $this->hasMany['App\Hobby'];
-    }
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'motto', 'about_me',
     ];
 
     /**
@@ -39,4 +35,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hobbies() {
+        return $this->hasMany('App\Hobby');
+    }
+
 }
