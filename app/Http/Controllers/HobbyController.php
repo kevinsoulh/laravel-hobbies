@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Hobby;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HobbyController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,7 @@ class HobbyController extends Controller
     public function index()
     {
 
-        $hobbies = Hobby::all();
+        $hobbies = Hobby::orderBy('updated_at', 'DESC')->paginate(10);
 
         return view('hobby.index', compact('hobbies'));
     }
@@ -42,6 +48,7 @@ class HobbyController extends Controller
         $hobbies = new Hobby([
             'name' => $request->name,
             'description' => $request->description,
+            'user_id' => auth()->id()
         ]);
         $hobbies->save();
 

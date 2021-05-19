@@ -10,20 +10,27 @@
                     <ul class="list-group">
                         @foreach($hobbies as $hobby)
                             <li class="list-group-item">
-                                {{ $hobby->name }}
-                                <a class="btn btn-outline-primary float-end" href="/hobby/{{ $hobby->id }}/edit">Edit Hobby</a>
-                                &nbsp<a href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                @auth
+                                <a class="btn btn-sm btn-outline-primary float-end" href="/hobby/{{ $hobby->id }}/edit">Edit</a>
                                 <form class="float-end" action="/hobby/{{ $hobby->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" class="btn btn-outline-danger mx-2 " value="Delete">
+                                <input type="submit" class="btn btn-sm btn-outline-danger mx-2 " value="Delete">
                                 </form>
+                                @endauth
+                                <span class="float-end">{{ $hobby->created_at->diffForHumans() }}</span>
                             </li>
                         @endforeach
+                        <div class="mt-3">
+                            {{ $hobbies->links() }}
+                        </div>
                     </ul>
+                    @auth
                     <div>
                         <a class="btn mt-3 btn-primary" href="/hobby/create">Create new Hobby</a>
                     </div>
+                    @endauth
                 </div>
             </div>
         </div>
