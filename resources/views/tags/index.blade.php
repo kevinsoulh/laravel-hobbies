@@ -19,6 +19,7 @@
                                     <input class="btn btn-sm btn-outline-danger mx-2 float-end" type="submit" value="Delete">
                                 </form>
                                 @endauth
+                                <span class="float-end">Used {{ $tag->hobbies->count() }} times</span></span>
                             </li>
                         @endforeach
                     </ul>
