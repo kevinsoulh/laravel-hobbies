@@ -10,16 +10,28 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
 
-    public function __construct() {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
-    public function index(Hobby $hobbies) {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
         $hobbies = Hobby::select()
         ->where('user_id', auth()->id())
-        ->orderBy('updated_at', 'DESC')
+        ->orderBy('updated_at', "DESC")
         ->get();
 
-        return view('home', compact('hobbies', 'message_success'));
+        return view('home', compact('hobbies'));
     }
 }

@@ -22,7 +22,7 @@
                         </div>
                         <input class="btn btn-primary mt-2 mb-4" type="submit" value="Save Hobby"></input>
                     </form>
-                    <a class="btn btn-primary float-end" href="/hobby">Back</a>
+                    <a class="btn btn-primary float-end" href="{{ URL::previous() }}">Back</a>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     }
 
-    public function storeUser (Request $request) {
+    public function storeUser (Request $request, User $user) {
 
 
         $request->validate([
@@ -34,8 +34,13 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('home');
+        }
     
-        return redirect('home');
     } 
 
     public function login () {

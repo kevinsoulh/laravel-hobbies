@@ -37,3 +37,8 @@ Route::post('/login', 'auth\AuthController@authenticate');
 Route::get('logout', 'auth\AuthController@logout')->name('logout');
 
 Route::get('/home', 'auth\AuthController@home')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', 'hobbyTagController@attachTag');
+Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', 'HobbyTagController@detachTag');

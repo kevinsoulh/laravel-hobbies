@@ -24,32 +24,32 @@
                         @if($hobbies->count() > 0)
                         <h3>Your Hobbies:</h3>
                         @endif
-                            <ul class="list-group">
-                                @foreach($hobbies as $hobby)
-                                    <li class="list-group-item">
-                                        &nbsp;<a title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
-                                        @auth
-                                            <a class="btn btn-sm btn-light ml-2" href="/hobby/{{ $hobby->id }}/edit">Edit Hobby</a>
-                                        @endauth
+                    <ul class="list-group">
+                        @foreach($hobbies as $hobby)
+                            <li class="list-group-item">
+                                &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                @auth
+                                    <a class=" mx-2 float-end btn btn-sm btn-outline-primary ml-2" href="/hobby/{{ $hobby->id }}/edit"><i class="fas fa-edit"></i> Edit</a>
+                                @endauth
 
-                                        @auth
-                                            <form class="float-right" style="display: inline" action="/hobby/{{ $hobby->id }}" method="post">
-                                                @csrf
-                                                @method("DELETE")
-                                                <input class="btn btn-sm btn-outline-danger" type="submit" value="Delete">
-                                            </form>
-                                        @endauth
-                                        <span class="float-right mx-2">{{ $hobby->created_at->diffForHumans() }}</span>
-                                        <br>
-                                        @foreach($hobby->tags as $tag)
-                                            <a href="/hobby/tag/{{ $tag->id }}"><span class="badge badge-{{ $tag->style }}">{{ $tag->name }}</span></a>
-                                        @endforeach
-                                    </li>
+                                @auth
+                                    <form class="float-end" style="display: inline" action="/hobby/{{ $hobby->id }}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <input class="btn btn-sm btn-outline-danger" type="submit" value="Delete">
+                                    </form>
+                                @endauth
+                                <span class="float-end mx-2">{{ $hobby->created_at->format('M j, Y') }}</span>
+                                <br>
+                                @foreach($hobby->tags as $tag)
+                                    <a href="/hobby/tag/{{ $tag->id }}"><span class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
                                 @endforeach
-                            </ul>
+                            </li>
+                        @endforeach
+                    </ul>
                     @endisset
 
-                    <a class="btn btn-success btn-sm" href="/hobby/create"><i class="fas fa-plus-circle"></i> Create new Hobby</a>
+                    <a class="mt-3 btn btn-primary" href="/hobby/create"><i class="fas fa-plus-circle"></i> Create new Hobby</a>
                 </div>
             </div>
         </div>

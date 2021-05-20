@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hobby;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -63,9 +64,12 @@ class HobbyController extends Controller
      * @param  \App\Hobby  $hobby
      * @return \Illuminate\Http\Response
      */
-    public function show(Hobby $hobby)
+    public function show(Hobby $hobby, Tag $tag)
     {
-        return view('hobby.show', compact('hobby'));
+        $allTags = Tag::all();
+        $usedTags = $hobby->tags;
+        $availableTags = $allTags->diff($usedTags);
+        return view('hobby.show', compact('hobby', 'availableTags'));
     }
 
     /**

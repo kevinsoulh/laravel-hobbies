@@ -22,9 +22,11 @@
                     <li>
                         <a class="nav-link{{Request::is('/start') ? 'active' : '' }}" href="/start">Start</a>
                     </li>
-                    <li>
-                        <a class="nav-link{{Request::is('/home') ? 'active' : '' }}" href="/home">Home</a>
-                    </li>
+                    @auth
+                        <li>
+                            <a class="nav-link{{Request::is('/home') ? 'active' : '' }}" href="/home">Home</a>
+                        </li>
+                    @endauth
                     <li>
                         <a class="nav-link{{Request::is('/info') ? 'active' : '' }}" href="/info">Info</a>
                     </li>
