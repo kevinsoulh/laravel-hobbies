@@ -29,7 +29,7 @@
                             <li class="list-group-item">
                                 &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
                                 @auth
-                                    <a class=" mx-2 float-end btn btn-sm btn-outline-primary ml-2" href="/hobby/{{ $hobby->id }}/edit"><i class="fas fa-edit"></i> Edit</a>
+                                    <a class=" mx-2 float-end btn btn-sm btn-outline-primary ml-2" href="/hobby/{{ $hobby->id }}/edit"> Edit</a>
                                 @endauth
 
                                 @auth
@@ -42,14 +42,14 @@
                                 <span class="float-end mx-2">{{ $hobby->created_at->format('M j, Y') }}</span>
                                 <br>
                                 @foreach($hobby->tags as $tag)
-                                    <a href="/hobby/tag/{{ $tag->id }}"><span class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span></a>
+                                    <span class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span>
                                 @endforeach
                             </li>
                         @endforeach
                     </ul>
                     @endisset
 
-                    <a class="mt-3 btn btn-primary" href="/hobby/create"><i class="fas fa-plus-circle"></i> Create new Hobby</a>
+                    <a class="mt-3 btn btn-primary" href="/hobby/create"> Create new Hobby</a>
                 </div>
             </div>
         </div>

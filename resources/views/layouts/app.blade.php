@@ -19,17 +19,21 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <ul class="navbar-nav mr-auto">
-                    <li>
-                        <a class="nav-link{{Request::is('/start') ? 'active' : '' }}" href="/start">Start</a>
-                    </li>
+                    @guest
+                        <li>
+                            <a class="nav-link{{Request::is('/start') ? 'active' : '' }}" href="/start">Start</a>
+                        </li>
+                    @endguest
                     @auth
                         <li>
                             <a class="nav-link{{Request::is('/home') ? 'active' : '' }}" href="/home">Home</a>
                         </li>
                     @endauth
-                    <li>
-                        <a class="nav-link{{Request::is('/info') ? 'active' : '' }}" href="/info">Info</a>
-                    </li>
+                    @guest
+                        <li>
+                            <a class="nav-link{{Request::is('/info') ? 'active' : '' }}" href="/info">Info</a>
+                        </li>
+                    @endguest
                     <li>
                         <a class="nav-link{{Request::is('/hobby') ? 'active' : '' }}" href="/hobby">Hobbies</a>
                     </li>
