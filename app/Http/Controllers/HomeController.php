@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $hobbies = Hobby::select()
         ->where('user_id', auth()->id())
-        ->orderBy('updated_at', "DESC")
+        ->orderBy('updated_at', 'desc')
         ->get();
 
         return view('home', compact('hobbies'));
