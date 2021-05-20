@@ -11,9 +11,9 @@
                     <div class="row">
                         <div class="col-md-9">
                             <h2>Hello {{ auth()->user()->name }}</h2>
-                            <h5>Your Motto</h5>
+                            <h5>My Motto:</h5>
                             <p>{{ auth()->user()->motto ?? '' }}</p>
-                            <h5>Your "About Me"</h5>
+                            <h5>About Me:</h5>
                             <p>{{ auth()->user()->about_me ?? '' }}</p>
                             <p>
                                 <a class="btn btn-sm btn-primary" href="user/{{ auth()->user()->id }}/edit">Edit Profile</a>
@@ -22,7 +22,7 @@
                     </div>
                     @isset($hobbies)
                         @if($hobbies->count() > 0)
-                        <h3>Your Hobbies:</h3>
+                        <h3>My Hobbies:</h3>
                         @endif
                     <ul class="list-group">
                         @foreach($hobbies as $hobby)
