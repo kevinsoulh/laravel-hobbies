@@ -11,16 +11,19 @@
                         @foreach($hobbies as $hobby)
                             <li class="list-group-item">
                                 &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                <!--
                                 @auth
                                 <a class="btn btn-sm btn-outline-primary float-end" href="/hobby/{{ $hobby->id }}/edit">Edit</a>
                                 @endauth
+                                -->
                                 &nbsp;<span class="mx-2">Posted by: <a style="text-decoration:none;" href="/user/{{ $hobby->user->id }}">{{ $hobby->user->name }} ({{ $hobby->user->hobbies->count() }} Hobbies)</a>
                                 @auth
-                                <form class="float-end" action="/hobby/{{ $hobby->id }}" method="post">
+                                <!--<form class="float-end" action="/hobby/{{ $hobby->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-sm btn-outline-danger mx-2 " value="Delete">
                                 </form>
+                                -->
                                 @endauth
                                 <span class="float-end">{{ $hobby->created_at->format('M j, Y') }}</span>
                                 <br>
