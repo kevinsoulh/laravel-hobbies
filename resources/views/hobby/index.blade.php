@@ -10,6 +10,11 @@
                     <ul class="list-group">
                         @foreach($hobbies as $hobby)
                             <li class="list-group-item">
+                                @if(file_exists('img/hobbies/' . $hobby->id . '_thumb.jpg'))
+                                    <a title="Show Details" href="/hobby/{{ $hobby->id }}">
+                                        <img src="/img/hobbies/{{ $hobby->id }}_thumb.jpg" alt="Hobby Thumb">
+                                    </a>
+                                @endif
                                 &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
                                 <!--
                                 @auth
@@ -17,6 +22,10 @@
                                 @endauth
                                 -->
                                 &nbsp;<span class="mx-2">Posted by: <a style="text-decoration:none;" href="/user/{{ $hobby->user->id }}">{{ $hobby->user->name }} ({{ $hobby->user->hobbies->count() }} Hobbies)</a>
+                                
+                                @if(file_exists('img/users/' . $hobby->user->id . '_thumb.jpg'))
+                                        <a href="/user/{{ $hobby->user->id }}"><img class="rounded" src="/img/users/{{$hobby->user->id}}_thumb.jpg"></a>
+                                @endif
                                 @auth
                                 <!--<form class="float-end" action="/hobby/{{ $hobby->id }}" method="post">
                                 @csrf
@@ -28,7 +37,7 @@
                                 <span class="float-end">{{ $hobby->created_at->format('M j, Y') }}</span>
                                 <br>
                                 @foreach($hobby->tags as $tag)
-                                    <span class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span>
+                                    <span style="font-size: 70%;" class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span>
                                 @endforeach
                                 
                             </li>

@@ -42,3 +42,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/attach', 'hobbyTagController@attachTag');
 Route::get('/hobby/{hobby_id}/tag/{tag_id}/detach', 'HobbyTagController@detachTag');
+
+// Delete Images of Hobby
+Route::get('/delete-images/hobby/{hobby_id}', 'HobbyController@deleteImages');
+// Delete Images of User
+Route::get('/delete-images/user/{user_id}', 'UserController@deleteImages');

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Hobby;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\ImageController;
 
 class HobbyController extends Controller
 {
@@ -97,7 +99,12 @@ class HobbyController extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:5',
+            'image' => 'mimes:jpeg, jpg, bmp, png, gif'
         ]);
+
+        if ($request->image) {
+            $this->saveImages($request->image, $hobby->id);
+        }
 
         $hobby->update([
             'name' => $request->name,
@@ -120,5 +127,43 @@ class HobbyController extends Controller
         $hobby->delete();
 
         return redirect('/home');
+    } 
+
+    public function saveImages($imageInput, $hobby_id){
+
+        $image = Image::make($imageInput);
+        if ( $image->width() > $image->height() ) { // Landscape
+            $image->widen(1200)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_large.jpg")
+                ->widen(400)->pixelate(12)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->widen(60)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_thumb.jpg");
+        } else { // Portrait
+            $image->heighten(900)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_large.jpg")
+                ->heighten(400)->pixelate(12)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->heighten(60)
+                ->save(public_path() . "/img/hobbies/" . $hobby_id . "_thumb.jpg");
+        }
+
+    }
+
+    public function deleteImages($hobby_id){
+        if(file_exists(public_path() . "/img/hobbies/" . $hobby_id . "_large.jpg"))
+            unlink(public_path() . "/img/hobbies/" . $hobby_id . "_large.jpg");
+        if(file_exists(public_path() . "/img/hobbies/" . $hobby_id . "_thumb.jpg"))
+            unlink(public_path() . "/img/hobbies/" . $hobby_id . "_thumb.jpg");
+        if(file_exists(public_path() . "/img/hobbies/" . $hobby_id . "_pixelated.jpg"))
+            unlink(public_path() . "/img/hobbies/" . $hobby_id . "_pixelated.jpg");
+
+        return back()->with(
+            [
+                'message_success' => "The Image was deleted."
+            ]
+        );
     }
 }

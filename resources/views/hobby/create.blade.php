@@ -14,6 +14,11 @@
                             <input class="form-control{{ $errors->has('name') ? 'border-danger' : '' }}" type="text" id="name" name="name" value="{{ old('name') }}">
                             <small class="form-text text-danger">{!! $errors->first('name') !!}</small>
                         </div>
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input class="form-control{{ $errors->has('image') ? 'border-danger' : '' }}" type="file" id="image" name="image" value="{{ old('image') }}">
+                            <small class="form-text text-danger">{!! $errors->first('image') !!}</small>
+                        </div>
                         <div class="form-group ">
                             <label for="description">Description</label>
                             <textarea class="form-control{{ $errors->has('description') ? 'border-danger' : '' }}" name="description" id="description" rows="5" value="{{ old('description') }}">

@@ -97,4 +97,42 @@ class UserController extends Controller
     {
         //
     }
+
+    public function saveImages($imageInput, $user_id){
+
+        $image = Image::make($imageInput);
+        if ( $image->width() > $image->height() ) { // Landscape
+            $image->widen(500)
+                ->save(public_path() . "/img/users/" . $user_id . "_large.jpg")
+                ->widen(300)->pixelate(12)
+                ->save(public_path() . "/img/users/" . $user_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->widen(60)
+                ->save(public_path() . "/img/users/" . $user_id. "_thumb.jpg");
+        } else { // Portrait
+            $image->heighten(500)
+                ->save(public_path() . "/img/users/" . $user_id . "_large.jpg")
+                ->heighten(300)->pixelate(12)
+                ->save(public_path() . "/img/users/" . $user_id . "_pixelated.jpg");
+            $image = Image::make($imageInput);
+            $image->heighten(60)
+                ->save(public_path() . "/img/users/" . $user_id . "_thumb.jpg");
+        }
+
+    }
+
+    public function deleteImages($user_id){
+        if(file_exists(public_path() . "/img/users/" . $user_id . "_large.jpg"))
+            unlink(public_path() . "/img/users/" . $user_id . "_large.jpg");
+        if(file_exists(public_path() . "/img/users/" . $user_id . "_thumb.jpg"))
+            unlink(public_path() . "/img/users/" . $user_id . "_thumb.jpg");
+        if(file_exists(public_path() . "/img/users/" . $user_id . "_pixelated.jpg"))
+            unlink(public_path() . "/img/users/" . $user_id . "_pixelated.jpg");
+
+        return back()->with(
+            [
+                'message_success' => "The Image was deleted."
+            ]
+        );
+    }
 }

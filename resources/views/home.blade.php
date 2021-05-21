@@ -43,7 +43,7 @@
                                 <span class="float-end mx-2">{{ $hobby->created_at->format('M j, Y') }}</span>
                                 <br>
                                 @foreach($hobby->tags as $tag)
-                                    <span class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span>
+                                    <span style="font-size: 70%;" class="badge rounded-pill bg-{{ $tag->style }}">{{ $tag->name }}</span>
                                 @endforeach
                             </li>
                         @endforeach

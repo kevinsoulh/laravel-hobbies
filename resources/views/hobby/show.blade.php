@@ -22,6 +22,18 @@
                     @endforeach
                     </p>
                 </div>
+                <div class="col-md-3">
+                    @if(Auth::user() && file_exists('img/hobbies/' . $hobby->id . '_large.jpg'))
+                        <a href="/img/hobbies/{{$hobby->id}}_large.jpg" data="img/hobbies/{{$hobby->id}}_large.jpg" data-title="{{ $hobby->name }}">
+                            <img class="img-fluid" src="/img/hobbies/{{$hobby->id}}_large.jpg" alt="">
+                        </a>
+                            Click image to enlarge
+                    @endif
+
+                    @if(!Auth::user() && file_exists('img/hobbies/' . $hobby->id . '_pixelated.jpg'))
+                        <img class="img-fluid" src="/img/hobbies/{{$hobby->id}}_pixelated.jpg" alt="">
+                    @endif
+                </div>
             </div>
             <a class="btn btn-primary mt-2" href="/home">Back</a>
         </div>
