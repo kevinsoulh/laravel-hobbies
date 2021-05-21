@@ -23,7 +23,7 @@
                     </p>
                 </div>
             </div>
-            <a class="btn btn-primary mt-2" href="/hobby">Back</a>
+            <a class="btn btn-primary mt-2" href="/home">Back</a>
         </div>
     </div>
 </div>

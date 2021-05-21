@@ -28,6 +28,7 @@
                         @foreach($hobbies as $hobby)
                             <li class="list-group-item">
                                 &nbsp;<a style="text-decoration:none;" title="Show Details" href="/hobby/{{ $hobby->id }}">{{ $hobby->name }}</a>
+                                &nbsp;<span class="mx-2"><a style="text-decoration:none;" href="/user/{{ $hobby->user->id }}">({{ $hobby->user->hobbies->count() }} Hobbies)</a>
                                 @auth
                                     <a class=" mx-2 float-end btn btn-sm btn-outline-primary ml-2" href="/hobby/{{ $hobby->id }}/edit"> Edit</a>
                                 @endauth

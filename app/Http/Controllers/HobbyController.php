@@ -53,9 +53,7 @@ class HobbyController extends Controller
         ]);
         $hobbies->save();
 
-        return $this->index()->with([
-            'message_success' => 'Hobby '. $hobbies->name .' was  created'
-        ]);
+        return redirect('/home');
     }
 
     /**
@@ -106,9 +104,7 @@ class HobbyController extends Controller
             'description' => $request->description,
         ]);
 
-        return $this->index()->with([
-            'message_success' => 'Hobby '. $hobby->name .' was updated'
-        ]);
+        return $this->index();
     }
 
     /**
@@ -123,8 +119,6 @@ class HobbyController extends Controller
         $_hobby = $hobby->name;
         $hobby->delete();
 
-        return $this->index()->with([
-            'message_success' => 'Hobby '. $hobby->name .' was deleted'
-        ]);
+        return redirect('/home');
     }
 }
